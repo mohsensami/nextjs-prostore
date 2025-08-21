@@ -1,5 +1,4 @@
-// src/components/HomePage.jsx
-
+import Link from "next/link";
 import React from "react";
 
 const page = () => {
@@ -9,44 +8,44 @@ const page = () => {
       <header className="bg-navy-800 text-gold-300 py-4 shadow-md">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="text-2xl font-bold">
-            <a
+            <Link
               href="/"
               className="hover:text-gold-200 transition-colors duration-300"
             >
               گالری طلای زرین
-            </a>
+            </Link>
           </div>
           <nav className="hidden md:flex space-x-6 text-lg">
-            <a
+            <Link
               href="#"
               className="hover:text-gold-200 transition-colors duration-300"
             >
               خانه
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="hover:text-gold-200 transition-colors duration-300"
             >
               محصولات
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="hover:text-gold-200 transition-colors duration-300"
             >
               درباره ما
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="hover:text-gold-200 transition-colors duration-300"
             >
               تماس با ما
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="hover:text-gold-200 transition-colors duration-300"
             >
               بلاگ
-            </a>
+            </Link>
           </nav>
           <div className="flex items-center space-x-4">
             <button className="p-2 hover:bg-navy-700 rounded-full transition-colors duration-300">
@@ -117,12 +116,12 @@ const page = () => {
           <p className="text-lg md:text-2xl mb-8">
             مجموعه نفیس طلا و جواهرات برای لحظات خاص شما
           </p>
-          <a
+          <Link
             href="#"
             className="bg-gold-500 text-navy-900 py-3 px-8 rounded-full font-semibold text-lg hover:bg-gold-400 transition-colors duration-300"
           >
             مشاهده محصولات
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -133,7 +132,7 @@ const page = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Category Card 1 */}
-          <a
+          <Link
             href="#"
             className="group relative overflow-hidden rounded-lg shadow-lg"
           >
@@ -147,9 +146,9 @@ const page = () => {
                 گردنبند
               </span>
             </div>
-          </a>
+          </Link>
           {/* Category Card 2 */}
-          <a
+          <Link
             href="#"
             className="group relative overflow-hidden rounded-lg shadow-lg"
           >
@@ -163,9 +162,9 @@ const page = () => {
                 انگشتر
               </span>
             </div>
-          </a>
+          </Link>
           {/* Category Card 3 */}
-          <a
+          <Link
             href="#"
             className="group relative overflow-hidden rounded-lg shadow-lg"
           >
@@ -179,9 +178,9 @@ const page = () => {
                 گوشواره
               </span>
             </div>
-          </a>
+          </Link>
           {/* Category Card 4 */}
-          <a
+          <Link
             href="#"
             className="group relative overflow-hidden rounded-lg shadow-lg"
           >
@@ -195,7 +194,7 @@ const page = () => {
                 دستبند
               </span>
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -291,12 +290,12 @@ const page = () => {
               می‌کنیم که نه تنها ارزشمند هستند، بلکه داستان‌گوی زیبایی و اصالت
               شما خواهند بود.
             </p>
-            <a
+            <Link
               href="#"
               className="mt-6 inline-block bg-gold-500 text-navy-900 py-2 px-6 rounded-full font-semibold hover:bg-gold-400 transition-colors duration-300"
             >
               درباره ما بیشتر بدانید
-            </a>
+            </Link>
           </div>
           <div className="md:w-1/2">
             <img
@@ -321,28 +320,28 @@ const page = () => {
             <h3 className="text-xl font-bold mb-4">دسترسی سریع</h3>
             <ul className="space-y-2">
               <li>
-                <a
+                <Link
                   href="#"
                   className="hover:text-gold-300 transition-colors duration-300"
                 >
                   محصولات
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="hover:text-gold-300 transition-colors duration-300"
                 >
                   درباره ما
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="hover:text-gold-300 transition-colors duration-300"
                 >
                   تماس با ما
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -350,7 +349,7 @@ const page = () => {
             <h3 className="text-xl font-bold mb-4">شبکه‌های اجتماعی</h3>
             <div className="flex justify-center md:justify-end space-x-4">
               {/* Social Media Icons */}
-              <a
+              <Link
                 href="#"
                 className="hover:text-gold-300 transition-colors duration-300"
               >
@@ -363,8 +362,8 @@ const page = () => {
                 >
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.625 4.975 4.978.042 1.37.058 1.57.058 4.849 0 3.278-.016 3.478-.058 4.849-.204 3.353-1.723 4.829-4.975 4.977-1.266.06-1.646.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.147-4.77-1.624-4.975-4.977-.042-1.37-.058-1.57-.058-4.85s.016-3.478.058-4.849c.205-3.353 1.724-4.829 4.976-4.978 1.265-.06 1.646-.07 4.85-.07zm0-2.163c-3.376 0-3.722.012-5.068.067-4.152.189-6.027 2.064-6.216 6.216-.055 1.346-.067 1.692-.067 5.068s.012 3.722.067 5.068c.189 4.152 2.064 6.027 6.216 6.216 1.346.055 1.692.067 5.068.067s3.722-.012 5.068-.067c4.152-.189 6.027-2.064 6.216-6.216.055-1.346.067-1.692.067-5.068s-.012-3.722-.067-5.068c-.189-4.152-2.064-6.027-6.216-6.216-1.346-.055-1.692-.067-5.068-.067zM12 7.027c-2.747 0-4.973 2.226-4.973 4.973s2.226 4.973 4.973 4.973 4.973-2.226 4.973-4.973-2.226-4.973-4.973-4.973zm0 8.164c-1.764 0-3.19-1.426-3.19-3.19s1.426-3.19 3.19-3.19 3.19 1.426 3.19 3.19-1.426 3.19-3.19 3.19zm8.563-9.524c-.815 0-1.479.664-1.479 1.479s.664 1.479 1.479 1.479 1.479-.664 1.479-1.479-.664-1.479-1.479-1.479z" />
                 </svg>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="hover:text-gold-300 transition-colors duration-300"
               >
@@ -377,7 +376,7 @@ const page = () => {
                 >
                   <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.895 16.891c-.482.164-.913-.06-.993-.578l-.823-5.114 10.925-4.015-4.507 8.356-4.525 1.343z" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
