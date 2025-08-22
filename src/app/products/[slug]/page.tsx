@@ -13,6 +13,29 @@ import {
   BadgeCheck,
   Check,
 } from "lucide-react";
+import Image from "next/image";
+
+// TypeScript interfaces
+interface BadgeProps {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}
+
+interface SpecProps {
+  name: string;
+  value: string;
+}
+
+interface TabItem {
+  key: string;
+  label: string;
+  content: React.ReactNode;
+}
+
+interface TabsProps {
+  items: TabItem[];
+}
 
 // ⚠️ نکته: برای دید بهتر، از رنگ‌های دلخواه (navy & gold) با کدهای هگز استفاده شده است.
 // سرمه‌ای: #0b1a33  |  طلایی: #d4af37
@@ -130,10 +153,11 @@ export default function ProductPage() {
                   }`}
                   aria-label={`تصویر بندانگشتی ${i + 1}`}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={src}
                     alt="thumb"
+                    width={400}
+                    height={300}
                     className="w-full h-full object-cover"
                   />
                 </button>
@@ -401,7 +425,7 @@ export default function ProductPage() {
   );
 }
 
-function Badge({ icon, title, desc }: any) {
+function Badge({ icon, title, desc }: BadgeProps) {
   return (
     <div className="rounded-3xl p-4 bg-[#0b1a33] ring-1 ring-white/10 flex items-center gap-3">
       <div className="w-10 h-10 rounded-2xl bg-[#d4af37]/15 grid place-items-center ring-1 ring-[#d4af37]/40">
@@ -415,7 +439,7 @@ function Badge({ icon, title, desc }: any) {
   );
 }
 
-function Spec({ name, value }: any) {
+function Spec({ name, value }: SpecProps) {
   return (
     <div className="flex items-center justify-between rounded-2xl bg-[#0b1a33] ring-1 ring-white/10 p-3">
       <span className="text-white/60">{name}</span>
@@ -424,12 +448,12 @@ function Spec({ name, value }: any) {
   );
 }
 
-function Tabs({ items }: any) {
+function Tabs({ items }: TabsProps) {
   const [active, setActive] = useState(items?.[0]?.key ?? "tab");
   return (
     <div>
       <div className="flex gap-2 overflow-x-auto">
-        {items.map((it: any) => (
+        {items.map((it: TabItem) => (
           <button
             key={it.key}
             onClick={() => setActive(it.key)}
@@ -444,7 +468,7 @@ function Tabs({ items }: any) {
         ))}
       </div>
       <div className="mt-4">
-        {items.map((it: any) => (
+        {items.map((it: TabItem) => (
           <div key={it.key} className={active === it.key ? "block" : "hidden"}>
             {it.content}
           </div>

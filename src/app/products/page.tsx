@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import Image from "next/image";
 
 type Product = {
   id: number;
@@ -157,8 +158,9 @@ export default function ProductsPage() {
                 className="rounded-3xl overflow-hidden bg-[#091427] ring-1 ring-white/10 shadow-xl flex flex-col"
               >
                 <div className="aspect-square overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
+                    width={400}
+                    height={300}
                     src={p.img}
                     alt={p.title}
                     className="w-full h-full object-cover"

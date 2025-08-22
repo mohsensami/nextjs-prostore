@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 
 //
 // === Sample Data ===
@@ -65,7 +66,7 @@ const products = [
 //
 // === Homepage Component ===
 //
-export default function page() {
+export default function Page() {
   const [index, setIndex] = useState(0);
 
   const next = () => setIndex((i) => (i + 1) % banners.length);
@@ -120,8 +121,10 @@ export default function page() {
               key={cat.id}
               className="relative rounded-2xl overflow-hidden shadow-lg group"
             >
-              <img
+              <Image
                 src={cat.img}
+                width={400}
+                height={300}
                 alt={cat.title}
                 className="w-full h-48 object-cover group-hover:scale-105 transition"
               />
@@ -142,9 +145,11 @@ export default function page() {
               key={p.id}
               className="bg-[#091427] rounded-2xl shadow-xl overflow-hidden"
             >
-              <img
+              <Image
                 src={p.img}
                 alt={p.title}
+                width={400}
+                height={300}
                 className="w-full h-48 object-cover"
               />
               <div className="p-4 flex flex-col gap-2">
