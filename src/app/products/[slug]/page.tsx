@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -401,7 +401,7 @@ export default function ProductPage() {
   );
 }
 
-function Badge({ icon, title, desc }) {
+function Badge({ icon, title, desc }: any) {
   return (
     <div className="rounded-3xl p-4 bg-[#0b1a33] ring-1 ring-white/10 flex items-center gap-3">
       <div className="w-10 h-10 rounded-2xl bg-[#d4af37]/15 grid place-items-center ring-1 ring-[#d4af37]/40">
@@ -415,7 +415,7 @@ function Badge({ icon, title, desc }) {
   );
 }
 
-function Spec({ name, value }) {
+function Spec({ name, value }: any) {
   return (
     <div className="flex items-center justify-between rounded-2xl bg-[#0b1a33] ring-1 ring-white/10 p-3">
       <span className="text-white/60">{name}</span>
@@ -424,12 +424,12 @@ function Spec({ name, value }) {
   );
 }
 
-function Tabs({ items }) {
+function Tabs({ items }: any) {
   const [active, setActive] = useState(items?.[0]?.key ?? "tab");
   return (
     <div>
       <div className="flex gap-2 overflow-x-auto">
-        {items.map((it) => (
+        {items.map((it: any) => (
           <button
             key={it.key}
             onClick={() => setActive(it.key)}
@@ -444,7 +444,7 @@ function Tabs({ items }) {
         ))}
       </div>
       <div className="mt-4">
-        {items.map((it) => (
+        {items.map((it: any) => (
           <div key={it.key} className={active === it.key ? "block" : "hidden"}>
             {it.content}
           </div>
