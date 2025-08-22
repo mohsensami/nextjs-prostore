@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Product = {
   id: number;
   title: string;
+  link: string;
   price: number;
   size: string;
   karat: number;
@@ -18,6 +20,7 @@ type Product = {
 const PRODUCTS: Product[] = Array.from({ length: 12 }).map((_, i) => ({
   id: i,
   title: `محصول ${i + 1}`,
+  link: `/products/${i + 1}`,
   price: (5 + i) * 100000,
   size: ["S", "M", "L"][i % 3],
   karat: [18, 21, 24][i % 3],
@@ -167,7 +170,9 @@ export default function ProductsPage() {
                   />
                 </div>
                 <div className="p-4 flex-1 flex flex-col">
-                  <h3 className="font-bold text-lg">{p.title}</h3>
+                  <h3 className="font-bold text-lg">
+                    <Link href={p.link}>{p.title}</Link>
+                  </h3>
                   <div className="mt-1 text-sm text-white/70">
                     {p.karat} عیار
                   </div>

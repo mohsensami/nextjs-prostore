@@ -73,7 +73,7 @@ export default function Page() {
   const prev = () => setIndex((i) => (i - 1 + banners.length) % banners.length);
 
   return (
-    <div className="min-h-screen bg-[#0b1a33] text-white">
+    <div className="min-h-screen bg-[#192440] text-white">
       {/* === Banner Slider === */}
       <section className="relative w-full h-[60vh] overflow-hidden">
         <AnimatePresence mode="wait">
