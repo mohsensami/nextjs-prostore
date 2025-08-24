@@ -1,13 +1,5 @@
-import { Button } from "@/components/ui/button";
-
 const HomePage = () => {
-  return (
-    <>
-      <Button>Home</Button>
-
-      <div className="bg-red-500">Home</div>
-    </>
-  );
+  return <h1>HomePage</h1>;
 };
 
 export default HomePage;
