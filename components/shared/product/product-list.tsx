@@ -1,5 +1,5 @@
+import { Product } from "@/types";
 import ProductCard from "./product-card";
-import { Product } from "@/lib/types";
 
 const ProductList = ({
   data,
