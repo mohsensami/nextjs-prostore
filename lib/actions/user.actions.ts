@@ -1,7 +1,10 @@
 "use server";
 
 import { signIn, signOut } from "@/auth";
-import { signInFormSchema } from "../validator";
+
+import { signInFormSchema, signUpFormSchema } from "../validator";
+import { hashSync } from "bcrypt-ts-edge";
+import { prisma } from "@/db/prisma";
 
 // Narrowly detect Next.js redirect errors without importing internal APIs
 function isRedirectError(error: unknown): boolean {
@@ -39,4 +42,44 @@ export async function signInWithCredentials(
 // Sign the user out
 export async function signOutAction() {
   await signOut();
+}
+
+// Register a new user
+export async function signUp(prevState: unknown, formData: FormData) {
+  try {
+    const user = signUpFormSchema.parse({
+      name: formData.get("name"),
+      email: formData.get("email"),
+      confirmPassword: formData.get("confirmPassword"),
+      password: formData.get("password"),
+    });
+
+    const plainPassword = user.password;
+
+    user.password = hashSync(user.password, 10);
+
+    await prisma.user.create({
+      data: {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      },
+    });
+
+    await signIn("credentials", {
+      email: user.email,
+      password: plainPassword,
+    });
+
+    return { success: true, message: "User created successfully" };
+  } catch (error) {
+    if (isRedirectError(error)) {
+      throw error;
+    }
+
+    return {
+      success: false,
+      message: "Something went wrong",
+    };
+  }
 }
