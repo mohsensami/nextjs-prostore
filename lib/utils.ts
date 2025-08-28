@@ -20,12 +20,13 @@ export function formatNumberWithDecimal(num: number): string {
 export function formatError(error: any): string {
   if (error.name === "ZodError") {
     // Handle Zod error
-    const fieldErrors = Object.keys(error.errors).map((field) => {
-      const message = error.errors[field].message;
-      return typeof message === "string" ? message : JSON.stringify(message);
-    });
-
-    return fieldErrors.join(". ");
+    // const fieldErrors = Object.keys(error.errors).map((field) => {
+    //   const message = error.errors[field].message;
+    //   return typeof message === "string" ? message : JSON.stringify(message);
+    // });
+    // return fieldErrors.join(". ");
+    console.log(error);
+    return "Error";
   } else if (
     error.name === "PrismaClientKnownRequestError" &&
     error.code === "P2002"
@@ -40,3 +41,14 @@ export function formatError(error: any): string {
       : JSON.stringify(error.message);
   }
 }
+
+// Round to 2 decimal places
+export const round2 = (value: number | string) => {
+  if (typeof value === "number") {
+    return Math.round((value + Number.EPSILON) * 100) / 100; // avoid rounding errors
+  } else if (typeof value === "string") {
+    return Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+  } else {
+    throw new Error("value is not a number nor a string");
+  }
+};
