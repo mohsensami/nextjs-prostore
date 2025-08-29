@@ -5,7 +5,7 @@ import { signIn, signOut } from "@/auth";
 import { signInFormSchema, signUpFormSchema } from "../validator";
 import { hashSync } from "bcrypt-ts-edge";
 import { prisma } from "@/db/prisma";
-import { formatError } from '../utils';
+import { formatError } from "../utils";
 
 // Narrowly detect Next.js redirect errors without importing internal APIs
 function isRedirectError(error: unknown): boolean {
@@ -74,7 +74,6 @@ export async function signUp(prevState: unknown, formData: FormData) {
 
     return { success: true, message: "User created successfully" };
   } catch (error) {
-    
     if (isRedirectError(error)) {
       throw error;
     }
@@ -85,4 +84,14 @@ export async function signUp(prevState: unknown, formData: FormData) {
       // message: formatError(error),
     };
   }
+}
+
+// Get user by ID
+export async function getUserById(userId: string) {
+  const user = await prisma.user.findFirst({
+    where: { id: userId },
+  });
+
+  if (!user) throw new Error("User not found");
+  return user;
 }
