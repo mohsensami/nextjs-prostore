@@ -10,7 +10,7 @@ import { ControllerRenderProps } from "react-hook-form";
 import { shippingAddressDefaultValues } from "@/lib/constants";
 // import { useToast } from "@/hooks/use-toast";
 import { useTransition } from "react";
-// import { updateUserAddress } from "@/lib/actions/user.actions";
+import { updateUserAddress } from "@/lib/actions/user.actions";
 // import CheckoutSteps from "@/components/shared/checkout-steps";
 import {
   Form,
@@ -23,6 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader } from "lucide-react";
+import { toast } from "sonner";
 
 const ShippingAddressForm = ({
   address,
@@ -38,6 +39,25 @@ const ShippingAddressForm = ({
 
   const [isPending, startTransition] = useTransition();
 
+  const onSubmit: SubmitHandler<z.infer<typeof shippingAddressSchema>> = async (
+    values
+  ) => {
+    startTransition(async () => {
+      const res = await updateUserAddress(values);
+
+      if (!res.success) {
+        // toast({
+        //   variant: "destructive",
+        //   description: res.message,
+        // });
+        toast(res.message);
+        return;
+      }
+
+      router.push("/payment-method");
+    });
+  };
+
   return (
     <>
       <div className="max-w-md mx-auto space-y-4">
@@ -48,7 +68,7 @@ const ShippingAddressForm = ({
         <Form {...form}>
           <form
             method="post"
-            // onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-4"
           >
             <div className="flex flex-col gap-5 md:flex-row">
