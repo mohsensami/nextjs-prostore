@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir="rtl" lang="fa" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={` ${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"
