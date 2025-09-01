@@ -6,6 +6,7 @@ import {
   shippingAddressSchema,
   insertOrderItemSchema,
   insertOrderSchema,
+  paymentResultSchema, // 👈 Add this line
 } from "@/lib/validator";
 
 export type Product = z.infer<typeof insertProductSchema> & {
@@ -32,3 +33,5 @@ export type Order = z.infer<typeof insertOrderSchema> & {
   // Add the raw database field for compatibility
   orderitems?: OrderItem[];
 };
+
+export type PaymentResult = z.infer<typeof paymentResultSchema>;
