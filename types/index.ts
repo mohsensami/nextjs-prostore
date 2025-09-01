@@ -29,4 +29,6 @@ export type Order = z.infer<typeof insertOrderSchema> & {
   deliveredAt: Date | null;
   orderItems: OrderItem[];
   user: { name: string; email: string };
+  // Add the raw database field for compatibility
+  orderitems?: OrderItem[];
 };
