@@ -27,6 +27,7 @@ const OrderDetailsPage = async (props: {
           orderItems: order.orderitems || [],
           shippingAddress: order.shippingAddress as ShippingAddress,
         }}
+        paypalClientId={process.env.PAYPAL_CLIENT_ID || "sb"}
       />
     </>
   );
