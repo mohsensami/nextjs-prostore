@@ -114,7 +114,10 @@ export const config = {
       if (session?.user.name && trigger === "update") {
         token.name = session.user.name;
       }
-
+      // Handle session updates (e.g., name change)
+      if (session?.user.name && trigger === "update") {
+        token.name = session.user.name;
+      }
       return token;
     },
     authorized({ request, auth }: any) {
@@ -133,7 +136,7 @@ export const config = {
 
       // Check if user is not authenticated and on a protected path
       if (!auth && protectedPaths.some((p) => p.test(pathname))) return false;
-      
+
       // Check for cart cookie
       if (!request.cookies.get("sessionCartId")) {
         // Generate cart cookie
