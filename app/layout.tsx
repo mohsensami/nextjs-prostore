@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | Tidas`,
+    template: `%s | nextjs-prostore`,
     default: APP_NAME,
   },
   description: APP_DESCRIPTION,

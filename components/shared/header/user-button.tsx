@@ -8,17 +8,22 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { signOutAction } from "@/lib/actions/user.actions";
+import { UserIcon } from "lucide-react";
 
 const UserButton = async () => {
   const session = await auth();
-  if (!session)
+
+  if (!session) {
     return (
-      <Link href="/api/auth/signin">
-        <Button>Sign In</Button>
-      </Link>
+      <Button asChild>
+        <Link href="/sign-in">
+          <UserIcon /> Sign In
+        </Link>
+      </Button>
     );
-  const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? "";
+  }
+
+  const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? "U";
 
   return (
     <div className="flex gap-2 items-center">
@@ -27,7 +32,7 @@ const UserButton = async () => {
           <div className="flex items-center">
             <Button
               variant="ghost"
-              className="relative w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-300"
+              className="relativee w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-200"
             >
               {firstInitial}
             </Button>
@@ -36,24 +41,24 @@ const UserButton = async () => {
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">
+              <div className="text-sm font-medium leading-none">
                 {session.user?.name}
-              </p>
-              <p className="text-xs leading-none text-muted-foreground">
+              </div>
+              <div className="text-sm text-muted-foreground leading-none">
                 {session.user?.email}
-              </p>
+              </div>
             </div>
           </DropdownMenuLabel>
 
-          <DropdownMenuItem className="p-0 mb-1">
-            <form action={signOutAction} className="w-full">
-              <Button
-                className="w-full py-4 px-2 h-4 justify-start"
-                variant="ghost"
-              >
-                Sign Out
-              </Button>
-            </form>
+          <DropdownMenuItem>
+            <Link href="/user/profile" className="w-full">
+              User Profile
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/user/orders" className="w-full">
+              Order History
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
