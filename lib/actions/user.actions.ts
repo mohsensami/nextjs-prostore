@@ -49,7 +49,7 @@ export async function signInWithCredentials(
 }
 
 // Sign the user out
-export async function signOutAction() {
+export async function signOutUser() {
   await signOut();
 }
 

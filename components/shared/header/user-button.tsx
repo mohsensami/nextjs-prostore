@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth } from "@/auth";
+import { signOutUser } from "@/lib/actions/user.actions";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -59,6 +60,25 @@ const UserButton = async () => {
             <Link href="/user/orders" className="w-full">
               Order History
             </Link>
+          </DropdownMenuItem>
+
+          {session?.user?.role === "admin" && (
+            <DropdownMenuItem>
+              <Link href="/admin/overview" className="w-full">
+                Admin
+              </Link>
+            </DropdownMenuItem>
+          )}
+
+          <DropdownMenuItem className="p-0 mb-1">
+            <form action={signOutUser} className="w-full">
+              <Button
+                className="w-full py-4 px-2 h-4 justify-start"
+                variant="ghost"
+              >
+                Sign Out
+              </Button>
+            </form>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
