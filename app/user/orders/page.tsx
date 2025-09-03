@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getMyOrders } from "@/lib/actions/order.actions";
+import { requireAdmin } from "@/lib/auth-guard";
 import { formatCurrency, formatDateTime, formatId } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 const OrdersPage = async (props: {
   searchParams: Promise<{ page: string }>;
 }) => {
+  await requireAdmin();
   const { page } = await props.searchParams;
   const orders = await getMyOrders({
     page: Number(page) || 1,
