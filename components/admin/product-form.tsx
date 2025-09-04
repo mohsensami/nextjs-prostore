@@ -30,6 +30,7 @@ import {
   updateProductSchema,
   productFormSchema,
 } from "@/lib/validator";
+import { UploadButton } from "@/lib/uploadthing";
 
 const ProductForm = ({
   type,
@@ -235,7 +236,7 @@ const ProductForm = ({
                         />
                       ))}
                       <FormControl>
-                        {/* <UploadButton
+                        <UploadButton
                           endpoint="imageUploader"
                           onClientUploadComplete={(res: { url: string }[]) => {
                             form.setValue("images", [...images, res[0].url]);
@@ -247,7 +248,7 @@ const ProductForm = ({
                             // });
                             toast(error?.message);
                           }}
-                        /> */}
+                        />
                       </FormControl>
                     </div>
                   </CardContent>
@@ -259,7 +260,7 @@ const ProductForm = ({
         </div>
         <div className="upload-field">
           {/* isFeatured */}
-          Featured Product
+          {/* Featured Product
           <Card>
             <CardContent className="space-y-2 mt-2">
               <FormField
@@ -286,7 +287,7 @@ const ProductForm = ({
                   height={680}
                 />
               )}
-              {/* {isFeatured && !banner && (
+              {isFeatured && !banner && (
                 <UploadButton
                   endpoint="imageUploader"
                   onClientUploadComplete={(res: { url: string }[]) => {
@@ -296,9 +297,9 @@ const ProductForm = ({
                     toast(error?.message);
                   }}
                 />
-              )} */}
+              )}
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
         <div>
           {/* Description */}
