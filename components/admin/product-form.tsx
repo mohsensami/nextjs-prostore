@@ -260,7 +260,7 @@ const ProductForm = ({
         </div>
         <div className="upload-field">
           {/* isFeatured */}
-          {/* Featured Product
+          Featured Product
           <Card>
             <CardContent className="space-y-2 mt-2">
               <FormField
@@ -299,7 +299,7 @@ const ProductForm = ({
                 />
               )}
             </CardContent>
-          </Card> */}
+          </Card>
         </div>
         <div>
           {/* Description */}
