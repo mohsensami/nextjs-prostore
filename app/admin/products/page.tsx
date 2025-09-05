@@ -32,6 +32,9 @@ const AdminProductsPage = async (props: {
     query: searchText,
     page,
     category,
+    price: "all",
+    rating: "all",
+    sort: "newest",
   });
 
   console.log(products);
