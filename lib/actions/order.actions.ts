@@ -12,6 +12,7 @@ import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { revalidatePath } from "next/cache";
 import { paypal } from "../paypal";
 import { PAGE_SIZE } from "../constants";
+import { Prisma } from "../generated/prisma";
 // import { Prisma } from "@prisma/client";
 
 // Create an order
@@ -321,14 +322,32 @@ export async function getOrderSummary() {
 }
 
 // Get All Orders (Admin)
+// Get all orders
 export async function getAllOrders({
   limit = PAGE_SIZE,
   page,
+  query,
 }: {
   limit?: number;
   page: number;
+  query: string;
 }) {
+  const queryFilter: Prisma.OrderWhereInput =
+    query && query !== "all"
+      ? {
+          user: {
+            name: {
+              contains: query,
+              mode: "insensitive",
+            } as Prisma.StringFilter,
+          },
+        }
+      : {};
+
   const data = await prisma.order.findMany({
+    where: {
+      ...queryFilter,
+    },
     orderBy: { createdAt: "desc" },
     take: limit,
     skip: (page - 1) * limit,
