@@ -15,6 +15,7 @@ import { ShippingAddress } from "@/types";
 
 import { z } from "zod";
 import { PAGE_SIZE } from "../constants";
+import { revalidatePath } from "next/cache";
 
 // Narrowly detect Next.js redirect errors without importing internal APIs
 function isRedirectError(error: unknown): boolean {
@@ -210,4 +211,20 @@ export async function getAllUsers({
     data,
     totalPages: Math.ceil(dataCount / limit),
   };
+}
+
+// Delete user by ID
+export async function deleteUser(id: string) {
+  try {
+    await prisma.user.delete({ where: { id } });
+
+    revalidatePath("/admin/users");
+
+    return {
+      success: true,
+      message: "User deleted successfully",
+    };
+  } catch (error) {
+    return { success: false, message: formatError(error) };
+  }
 }
