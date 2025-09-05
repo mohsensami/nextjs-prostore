@@ -14,6 +14,7 @@ import { formatError } from "../utils";
 import { ShippingAddress } from "@/types";
 
 import { z } from "zod";
+import { PAGE_SIZE } from "../constants";
 
 // Narrowly detect Next.js redirect errors without importing internal APIs
 function isRedirectError(error: unknown): boolean {
@@ -187,4 +188,26 @@ export async function updateProfile(user: { name: string; email: string }) {
   } catch (error) {
     return { success: false, message: formatError(error) };
   }
+}
+
+// Get all users
+export async function getAllUsers({
+  limit = PAGE_SIZE,
+  page,
+}: {
+  limit?: number;
+  page: number;
+}) {
+  const data = await prisma.user.findMany({
+    orderBy: { createdAt: "desc" },
+    take: limit,
+    skip: (page - 1) * limit,
+  });
+
+  const dataCount = await prisma.user.count();
+
+  return {
+    data,
+    totalPages: Math.ceil(dataCount / limit),
+  };
 }
