@@ -38,11 +38,17 @@ export async function getAllProducts({
   limit = PAGE_SIZE,
   page,
   category,
+  price,
+  rating,
+  sort
 }: {
   query: string;
   limit?: number;
   page: number;
   category: string;
+  price: string;
+  rating: string;
+  sort: string;
 }) {
   // Function body
   const data = await prisma.product.findMany({
