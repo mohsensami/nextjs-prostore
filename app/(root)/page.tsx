@@ -1,14 +1,24 @@
+import { ProductCarousel } from "@/components/shared/product/product-carousel";
 import ProductList from "@/components/shared/product/product-list";
-import { getLatestProducts } from "@/lib/actions/product.actions";
-
-export const dynamic = "force-dynamic";
+import {
+  getFeaturedProducts,
+  getLatestProducts,
+} from "@/lib/actions/product.actions";
 
 const HomePage = async () => {
   const latestProducts: any = await getLatestProducts();
+  const featuredProducts = await getFeaturedProducts();
 
   return (
     <div className="space-y-8">
       <h2 className="h2-bold">Latest Products</h2>
+      <div>
+        {featuredProducts.length > 0 && (
+          <ProductCarousel data={featuredProducts} />
+        )}
+
+        <ProductList title="Newest Arrivals" data={latestProducts} />
+      </div>
       <ProductList title="Newest Arrivals" data={latestProducts} />
     </div>
   );
