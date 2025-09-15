@@ -12,6 +12,11 @@ import { formatDateTime } from "@/lib/utils";
 import Link from "next/link";
 import ReviewForm from "./review-form";
 
+// Reload reviews when a review is submitted
+const reload = async () => {
+  console.log("review submitted");
+};
+
 const ReviewList = ({
   userId,
   productId,
@@ -27,7 +32,11 @@ const ReviewList = ({
     <div className="space-y-4">
       {reviews.length === 0 && <div>No reviews yet</div>}
       {userId ? (
-        <ReviewForm userId={userId} productId={productId} />
+        <ReviewForm
+          userId={userId}
+          productId={productId}
+          onReviewSubmitted={reload}
+        />
       ) : (
         <div>
           Please{" "}
