@@ -6,13 +6,14 @@ import { getMyCart } from "./cart.actions";
 import { getUserById } from "./user.actions";
 import { redirect } from "next/navigation";
 import { prisma } from "@/db/prisma";
-import { CartItem, PaymentResult } from "@/types";
+import { CartItem, PaymentResult, ShippingAddress } from "@/types";
 import { insertOrderSchema } from "../validator";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { revalidatePath } from "next/cache";
 import { paypal } from "../paypal";
 import { PAGE_SIZE } from "../constants";
 import { Prisma } from "../generated/prisma";
+import { sendPurchaseReceipt } from "@/email";
 // import { Prisma } from "@prisma/client";
 
 // Create an order
@@ -245,6 +246,15 @@ export async function updateOrderToPaid({
   if (!updatedOrder) {
     throw new Error("Order not found");
   }
+
+  // Send the purchase receipt email with the updated order
+  sendPurchaseReceipt({
+    order: {
+      ...updatedOrder,
+      shippingAddress: updatedOrder.shippingAddress as ShippingAddress,
+      paymentResult: updatedOrder.paymentResult as PaymentResult,
+    },
+  });
 }
 
 // Get User Orders
