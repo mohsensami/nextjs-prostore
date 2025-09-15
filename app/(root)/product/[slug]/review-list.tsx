@@ -15,6 +15,7 @@ import Link from "next/link";
 import ReviewForm from "./review-form";
 import { getReviews } from "@/lib/actions/review.actions";
 import Rating from "@/components/shared/product/rating";
+import { toast } from "sonner";
 
 const ReviewList = ({
   userId,
@@ -29,7 +30,13 @@ const ReviewList = ({
 
   // Reload reviews when a review is submitted
   const reload = async () => {
-    console.log("review submitted");
+    try {
+      const res = await getReviews({ productId });
+      setReviews([...res.data]);
+    } catch (err) {
+      console.log(err);
+      toast("Error in fetching reviews");
+    }
   };
 
   useEffect(() => {
