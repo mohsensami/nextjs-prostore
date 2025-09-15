@@ -1,17 +1,15 @@
-import { hashSync } from 'bcrypt-ts-edge';
-
 const sampleData = {
   users: [
     {
       name: "John",
       email: "admin@example.com",
-      password: hashSync("123456", 10),
+      password: "123456",
       role: "admin",
     },
     {
       name: "Jane",
-      email: "jane@example.com",
-      password: hashSync("123456", 10),
+      email: "user@example.com",
+      password: "123456",
       role: "user",
     },
   ],
@@ -31,7 +29,7 @@ const sampleData = {
       numReviews: 10,
       stock: 5,
       isFeatured: true,
-      banner: "banner-1.jpg",
+      banner: "/images/banner-1.jpg",
     },
     {
       name: "Brooks Brothers Long Sleeved Shirt",
@@ -48,7 +46,7 @@ const sampleData = {
       numReviews: 8,
       stock: 10,
       isFeatured: true,
-      banner: "banner-2.jpg",
+      banner: "/images/banner-2.jpg",
     },
     {
       name: "Tommy Hilfiger Classic Fit Dress Shirt",

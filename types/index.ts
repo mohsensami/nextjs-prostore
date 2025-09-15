@@ -33,6 +33,7 @@ export type Order = z.infer<typeof insertOrderSchema> & {
   user: { name: string; email: string };
   // Add the raw database field for compatibility
   orderitems?: OrderItem[];
+  paymentResult: PaymentResult;
 };
 
 export type PaymentResult = z.infer<typeof paymentResultSchema>;
